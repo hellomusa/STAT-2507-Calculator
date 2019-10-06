@@ -1,6 +1,4 @@
-# Calculator to use for Statistics
-# Ask for type of calculation, ask for input, output answer and explain its meaning
-#
+# Calculator to use for (basic) Statistics
 # Formulas to include:
 # 1. Arithmetic Mean/Average
 # 2. Median (and its rank)
@@ -20,12 +18,11 @@
 # 16. The Regression Line (y = a + bx)
 # 17. Probability? Maybe.
 
-from functools import partial
 import statistics
 import math
 
 
-### Read data from a file (each value seperated by a comma or a space)
+### Read data from a file (each value seperated by a comma)
 filein = open('data.txt', 'r')
 data = filein.read().split(',')
 data = [int(n.strip(' ')) for n in data]
