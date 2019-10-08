@@ -1,4 +1,4 @@
-# Calculator to use for (basic) Statistics
+# Calculator to use for (basic) statistics 
 # Formulas to include:
 # 1. Arithmetic Mean/Average
 # 2. Median (and its rank)
@@ -7,20 +7,17 @@
 # 5. Sample Variance
 # 6. Population Standard Deviation
 # 7. Sample Standard Deviation
-# 8. Tchebycheff's Theorem (% between intervals, % before or after intervals, etc?)
-# 9. Sample z-score
-# 10. Sort
-# 11. Percentiles
-# 12. Interquartile Range
-# 13. Minimum and maximum
-# 14. Five-number summary (min, q1, median, q3, max)
-# 15. Correlation Coefficient
-# 16. The Regression Line (y = a + bx)
-# 17. Probability? Maybe.
+# 8. Sample z-score
+# 9. Percentiles
+# 10. Interquartile Range
+# 11. Minimum and maximum
+# 12. Five-number summary (min, q1, median, q3, max)
+# 13. Correlation Coefficient
+# 14. The Regression Line (y = a + bx)
+# 15. Probability? \\
 
 import statistics
 import math
-
 
 ### Read data from a file (each value seperated by a comma)
 filein = open('data.txt', 'r')
@@ -128,7 +125,6 @@ def five_num_summary():
 
 # # Dict of options
 options = {
-
 		'0' : get_mean,
 		'1' : get_median,
 		'2' : get_mode,
@@ -140,26 +136,23 @@ options = {
 		'8' : get_percentile,
 		'9' : get_iqr,
 		'10': five_num_summary
-
 		  }
 
 names = ['Mean', 'Median', 'Mode', 'Population Variance', 'Sample Variance', 
-			 'Population Standard Deviation', 'Sample Standard Deviation', 
-			 'Sample z-score', 'Percentile', 'Interquartile Range', 'Five-number Summary']
-
+		 'Population Standard Deviation', 'Sample Standard Deviation', 
+		 'Sample z-score', 'Percentile', 'Interquartile Range', 'Five-number Summary']
 
 def main():
 
 	print('\n' + '*'*4 + " Welcome to the Statistics Calculator. " + '*'*4)
-
 	# List options as a numbered list from 0 to 10
 	for a, b in enumerate(names):
 		print('{}:- "{}"'.format(a, b))
 
 	while True: 
+
 		try:
 			user_choice = input("\nEnter option (Enter any non-integer to exit): ")
-
 			# Ensures rank and value for median
 			if user_choice == '1':
 				print("---> The Median Rank is: " + str((options[user_choice]())[0]) + " and the Median Value is " + str((options[user_choice]())[1]))
@@ -170,7 +163,6 @@ def main():
 					print("---> The " + str(names[int(user_choice)]) + " is: " + str(options[user_choice](arg1)))
 				elif user_choice == '8':
 					print("---> The " + str(int(arg1)) + "th " + str(names[int(user_choice)]) + " is: " + str(options[user_choice](arg1)))
-
 			else:
 				print("---> The " + str(names[int(user_choice)]) + " is: " + str(options[user_choice]()))
 
