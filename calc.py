@@ -1,25 +1,10 @@
-# Calculator to use for (basic) statistics 
-# Formulas to include:
-# 1. Arithmetic Mean/Average
-# 2. Median (and its rank)
-# 3. Mode
-# 4. Population Variance
-# 5. Sample Variance
-# 6. Population Standard Deviation
-# 7. Sample Standard Deviation
-# 8. Sample z-score
-# 9. Percentiles
-# 10. Interquartile Range
-# 11. Minimum and maximum
-# 12. Five-number summary (min, q1, median, q3, max)
-# 13. Correlation Coefficient
-# 14. The Regression Line (y = a + bx)
-# 15. Probability? \\
+# Work In Progress
+# Calculator for STAT 2507
 
 import statistics
 import math
 
-### Read data from a file (each value seperated by a comma)
+# Read data from a file (each value seperated by a comma)
 filein = open('data.txt', 'r')
 data = filein.read().split(',')
 data = [int(n.strip(' ')) for n in data]
@@ -27,7 +12,7 @@ data = [int(n.strip(' ')) for n in data]
 print("Given data: " + str(data))
 filein.close()
 
-## Sum, size of data
+### Sum, size of data
 data_sum = 0
 size = 0
 for n in data:
@@ -56,12 +41,12 @@ def get_mode():
 	return mode
 
 
-## Max
+### Max
 def get_max():
 	data_max = max(data)
 	return data_max
 
-## Min
+### Min
 def get_min():
 	data_min = min(data)
 	return data_min
@@ -73,44 +58,45 @@ def get_pop_variance():
 	return pop_variance
 
 
-## Sample Variance:
+### Sample Variance:
 def get_sam_variance():
 	sam_variance = statistics.variance(data, get_mean())
 	return sam_variance
 
 
-## Population Standard Deviation
+### Population Standard Deviation
 def get_pop_sd():
 	pop_sd = statistics.pstdev(data)
 	return pop_sd
 
 
-## Sample Standard Deviation
+### Sample Standard Deviation
 def get_sam_sd():
 	sam_sd = statistics.stdev(data)
 	return sam_sd
 
 
-## Sample z-score
+### Sample z-score
 def get_zscore(x):
 	z_score = ((x - get_mean()) / get_sam_sd())
 	return z_score
 
 
-## Percentiles
+### Percentiles
 def get_percentile(p):
 	percentile_pos = math.ceil(((p * size) / 100))
 	percentile = data[percentile_pos - 1]
 	return percentile
 
 
-# ## Interquartile Range
+### Interquartile Range
 def get_iqr():
 	q3 = get_percentile(75)
 	q1 = get_percentile(25)
 	iqr = (q3 - q1)
 	return iqr
 
+### Five Number Summary
 def five_num_summary():
 	d_min = get_min()
 	q1 = get_percentile(25)
@@ -123,8 +109,8 @@ def five_num_summary():
 	return summary
 
 
-# # Dict of options
-options = {
+# Dict of options
+options = { 
 		'0' : get_mean,
 		'1' : get_median,
 		'2' : get_mode,
@@ -145,59 +131,36 @@ names = ['Mean', 'Median', 'Mode', 'Population Variance', 'Sample Variance',
 def main():
 
 	print('\n' + '*'*4 + " Welcome to the Statistics Calculator. " + '*'*4)
-	# List options as a numbered list from 0 to 10
-	for a, b in enumerate(names):
+
+	for a, b in enumerate(names): # List options as a numbered list from 0 to 10
 		print('{}:- "{}"'.format(a, b))
 
-	while True: 
+	while True: # Loop for input and output
 
 		try:
-			user_choice = input("\nEnter option (Enter any non-integer to exit): ")
-			# Ensures rank and value for median
-			if user_choice == '1':
+			user_choice = input("\nEnter option (Enter any non-integer to exit): ") # Returns ValueError if non-int
+
+			if user_choice == '1': # Median
 				print("---> The Median Rank is: " + str((options[user_choice]())[0]) + " and the Median Value is " + str((options[user_choice]())[1]))
-			# Ensures argument for z-score and percentile calculations.
-			elif user_choice == '7' or user_choice == '8':
+			
+			elif user_choice == '7' or user_choice == '8': # Z-score and Percentiles
 				arg1 = float(input("Enter argument: "))
-				if user_choice == '7':
+				if user_choice == '7': # Z-score
 					print("---> The " + str(names[int(user_choice)]) + " is: " + str(options[user_choice](arg1)))
-				elif user_choice == '8':
+				elif user_choice == '8': # Percentile
 					print("---> The " + str(int(arg1)) + "th " + str(names[int(user_choice)]) + " is: " + str(options[user_choice](arg1)))
-			else:
+
+			else: # All other operations
 				print("---> The " + str(names[int(user_choice)]) + " is: " + str(options[user_choice]()))
 
-		except ValueError:
+		except ValueError: # Exits loop as per user's request to exit
 			break
-		except IndexError:
+
+		except IndexError: # Retries
 			print("Error: Invalid option. Try again.")
-
-
-
-
 
 
 if __name__ == "__main__":
 	main()
-
-
-# 1. Arithmetic Mean/Average
-# 2. Median (and its rank)
-# 3. Mode
-# 4. Population Variance
-# 5. Sample Variance
-# 6. Population Standard Deviation
-# 7. Sample Standard Deviation
-# 8. Tchebycheff's Theorem (% between intervals, % before or after intervals, etc?)
-# 9. Sample z-score
-# 10. Sort
-# 11. Percentiles
-# 12. Interquartile Range
-# 13. Minimum and maximum
-# 14. Five-number summary (min, q1, median, q3, max)
-
-# # Call functions in dict using input
-# # Ex. if user inputs 0, call get_mean()
-# print
-
 
 
