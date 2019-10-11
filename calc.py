@@ -12,7 +12,7 @@ data = [int(n.strip(' ')) for n in data]
 print("Given data: " + str(data))
 filein.close()
 
-### Sum, size of data
+# Sum and size of data
 data_sum = 0
 size = 0
 for n in data:
@@ -20,13 +20,13 @@ for n in data:
 	size += 1
 
 
-### Mean
+# Mean
 def get_mean():
 	mean = data_sum / size
 	return mean
 
 
-### Median
+# Median
 def get_median():
 	data.sort()
 	median_rank = (size + 1)/2
@@ -35,75 +35,74 @@ def get_median():
 	return median
 
 
-### Mode
+# Mode
 def get_mode():
 	mode = statistics.mode(data)
 	return mode
 
 
-### Max
+# Max
 def get_max():
 	data_max = max(data)
 	return data_max
 
-### Min
+# Min
 def get_min():
 	data_min = min(data)
 	return data_min
 
 
-### Population Variance:
+# Population Variance:
 def get_pop_variance():
 	pop_variance = statistics.pvariance(data, get_mean())
 	return pop_variance
 
 
-### Sample Variance:
+# Sample Variance:
 def get_sam_variance():
 	sam_variance = statistics.variance(data, get_mean())
 	return sam_variance
 
 
-### Population Standard Deviation
+# Population Standard Deviation
 def get_pop_sd():
 	pop_sd = statistics.pstdev(data)
 	return pop_sd
 
 
-### Sample Standard Deviation
+# Sample Standard Deviation
 def get_sam_sd():
 	sam_sd = statistics.stdev(data)
 	return sam_sd
 
 
-### Sample z-score
+# Sample z-score
 def get_zscore(x):
 	z_score = ((x - get_mean()) / get_sam_sd())
 	return z_score
 
 
-### Percentiles
+# Percentiles
 def get_percentile(p):
 	percentile_pos = math.ceil(((p * size) / 100))
 	percentile = data[percentile_pos - 1]
 	return percentile
 
 
-### Interquartile Range
+# Interquartile Range
 def get_iqr():
 	q3 = get_percentile(75)
 	q1 = get_percentile(25)
 	iqr = (q3 - q1)
 	return iqr
 
-### Five Number Summary
+# Five Number Summary
 def five_num_summary():
 	d_min = get_min()
 	q1 = get_percentile(25)
 	median = get_median()
 	q3 = get_percentile(75)
 	d_max = get_max()
-
 	summary_nums = [d_min, q1, median, q3, d_max]
 	summary = "Minimum: " + str(d_min) + ", Q1: " + str(q1) + ", Median: " + str(median[1]) + ", Q3: " + str(q3) + ", Maximum: " + str(d_max)
 	return summary
@@ -145,8 +144,10 @@ def main():
 			
 			elif user_choice == '7' or user_choice == '8': # Z-score and Percentiles
 				arg1 = float(input("Enter argument: "))
+
 				if user_choice == '7': # Z-score
 					print("---> The " + str(names[int(user_choice)]) + " is: " + str(options[user_choice](arg1)))
+		
 				elif user_choice == '8': # Percentile
 					print("---> The " + str(int(arg1)) + "th " + str(names[int(user_choice)]) + " is: " + str(options[user_choice](arg1)))
 
