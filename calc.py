@@ -97,7 +97,7 @@ def get_iqr():
 	return iqr
 
 # Five Number Summary
-def five_num_summary():
+def get_five_num_summary():
 	d_min = get_min()
 	q1 = get_percentile(25)
 	median = get_median()
@@ -106,6 +106,18 @@ def five_num_summary():
 	summary_nums = [d_min, q1, median, q3, d_max]
 	summary = "Minimum: " + str(d_min) + ", Q1: " + str(q1) + ", Median: " + str(median[1]) + ", Q3: " + str(q3) + ", Maximum: " + str(d_max)
 	return summary
+
+
+# Combinations
+def get_combination(n, r):
+	f = math.factorial
+	return f(n) // f(r) //  f(n-r)
+
+
+# Permutations
+def get_permutation(n, r):
+	f = math.factorial
+	return f(n) // f(n-r)
 
 
 # Dict of options
@@ -120,12 +132,14 @@ options = {
 		'7' : get_zscore,
 		'8' : get_percentile,
 		'9' : get_iqr,
-		'10': five_num_summary
+		'10': get_five_num_summary,
+		'11': get_combination,
+		'12': get_permutation	
 		  }
 
 names = ['Mean', 'Median', 'Mode', 'Population Variance', 'Sample Variance', 
 		 'Population Standard Deviation', 'Sample Standard Deviation', 
-		 'Sample z-score', 'Percentile', 'Interquartile Range', 'Five-number Summary']
+		 'Sample z-score', 'Percentile', 'Interquartile Range', 'Five-number Summary', "Combination", "Permutation"]
 
 def main():
 
@@ -142,6 +156,14 @@ def main():
 			if user_choice == '1': # Median
 				print("---> The Median Rank is: " + str((options[user_choice]())[0]) + " and the Median Value is " + str((options[user_choice]())[1]))
 			
+			elif user_choice == '11' or user_choice == '12': # Combinations and Permutations
+				n = int(input("Enter n: "))
+				r = int(input("Enter r: "))
+				if user_choice == '11': # Combination
+					print("---> The " + str(names[int(user_choice)]) + " of " + str(n) + " and " + str(r) + " is: " + str(options[user_choice](n, r)))
+				elif user_choice == '12': # Permutation
+					print("---> The " + str(names[int(user_choice)]) + " of " + str(n) + " and " + str(r) + " is: " + str(options[user_choice](n, r)))
+
 			elif user_choice == '7' or user_choice == '8': # Z-score and Percentiles
 				arg1 = float(input("Enter argument: "))
 
