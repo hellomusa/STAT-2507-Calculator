@@ -17,7 +17,7 @@ List of formulas to include:
 - [x] Interquartile Range
 - [x] Minimum and maximum
 - [x] Five-number summary (min, q1, median, q3, max)
-- [ ] Correlation Coefficient
-- [ ] The Regression Line (y = a + bx)
-- [ ] Probability? 
+- [x] Combinations
+- [x] Permutations
+- [ ] Binomial Probability Distribution
 
