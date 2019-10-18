@@ -1,7 +1,7 @@
 # Statistics-Calculator
 # In Progress
 
-Making a calculator consisting of basic statistic-focused calculations 
+Making a calculator consisting of basic statistics based calculations 
 (such as standard deviation and percentiles) to help with Statistics class.
 
 List of formulas to include:
