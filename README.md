@@ -1,10 +1,9 @@
 # Statistics-Calculator
 # In Progress
 
-Making a calculator consisting of basic statistic-focused calculations 
-(such as standard deviation and percentiles) to help with Statistics class.
+A calculator that can be used for basic statistic-based calculations. Used for personal use but will likely become a web app in the future.
 
-List of formulas to include:
+List of operations:
 - [x] Arithmetic Mean/Average
 - [x] Median (and its rank)
 - [x] Mode
