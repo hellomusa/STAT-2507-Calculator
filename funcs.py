@@ -1,5 +1,20 @@
 import statistics
 import math
+import numpy as np
+
+# Read data from a file (each value seperated by a comma)
+with open('data.txt', 'r') as filein:
+	data = filein.read().split(',')
+	data = [int(n.strip(' ')) for n in data]
+
+
+# Sum and size of data
+data_sum = 0
+size = 0
+for n in data:
+	data_sum += n
+	size += 1
+
 
 # Mean
 def get_mean():
@@ -65,10 +80,10 @@ def get_zscore(x):
 
 # Percentiles
 def get_percentile(p):
-	percentile_pos = math.ceil(((p * size) / 100))
-	percentile = data[percentile_pos - 1]
-	return percentile
-
+	pth = int(((p * (size + 1)) / 100)) - 1
+	pos = pth % 1
+	sorted_data = sorted(data)
+	return sorted_data[int(pth)] + ((sorted_data[int(pth)+1] - sorted_data[int(pth)]))*pos
 
 # Interquartile Range
 def get_iqr():

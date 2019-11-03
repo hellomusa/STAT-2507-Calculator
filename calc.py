@@ -5,20 +5,8 @@ import statistics
 import math
 from funcs import *
 
-# Read data from a file (each value seperated by a comma)
-filein = open('data.txt', 'r')
-data = filein.read().split(',')
-data = [int(n.strip(' ')) for n in data]
-
 print("Given data: " + str(data))
 filein.close()
-
-# Sum and size of data
-data_sum = 0
-size = 0
-for n in data:
-	data_sum += n
-	size += 1
 
 # Dict of options
 options = { 
