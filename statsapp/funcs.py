@@ -2,22 +2,13 @@ import statistics
 import math
 import numpy as np
 
-# Read data from a file (each value seperated by a comma)
-with open('data.txt', 'r') as filein:
-	data = filein.read().split(',')
-	data = [int(n.strip(' ')) for n in data]
-
-
-# Sum and size of data
-data_sum = 0
-size = 0
-for n in data:
-	data_sum += n
-	size += 1
-
-
 # Mean
-def get_mean():
+def get_mean(data):
+	data_sum = 0
+	size = 0
+	for n in data:
+		data_sum += n
+		size += 1
 	mean = data_sum / size
 	return mean
 
