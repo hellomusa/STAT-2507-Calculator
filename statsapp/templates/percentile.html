@@ -8,11 +8,4 @@
         <input type="submit" value="Submit Data and Argument"/>
     </form>
     <h3>The {{ percentile }}th {{ operation }} is: {{ result }}</h3>
-    
-    <h6>More calculations:<h6>
-	{% for choice in choices %}
-		{% if choice != operation %}	
-		<a href="/{{ choices[choice] }}">{{ choice }}</a><br>
-		{% endif %}
-	{% endfor %}
 {% endblock content %}

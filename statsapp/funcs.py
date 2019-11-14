@@ -2,6 +2,7 @@ import statistics
 import math
 import numpy as np
 
+
 # Mean
 def get_mean(data):
 	mean = sum(data) / len(data)

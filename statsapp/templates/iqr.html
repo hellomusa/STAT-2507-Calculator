@@ -7,11 +7,4 @@
         <input type="submit" value="Submit Data"/>
     </form>
     <h3>The {{ operation }} is: {{ result }}</h3>
-    
-    <h6>More calculations:<h6>
-	{% for choice in choices %}
-		{% if choice != operation %}	
-		<a href="/{{ choices[choice] }}">{{ choice }}</a><br>
-		{% endif %}
-	{% endfor %}
 {% endblock content %}

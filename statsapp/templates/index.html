@@ -6,8 +6,8 @@
   <!-- Basic Page Needs
   –––––––––––––––––––––––––––––––––––––––––––––––––– -->
   <meta charset="utf-8">
-  {% if title %}
-    <title>Stats Calc - {{ title }}</title>
+  {% if operation %}
+    <title>Stats Calc - {{ operation }}</title>
   {% else %}
     <title>Stats Calc</title>
   {% endif %}
@@ -37,6 +37,17 @@
     <div class="row">
       <div class="one-half column" style="margin-top: 5%">
         {% block content %}{% endblock %}
+        {% if operation %}
+          <hr/>    
+          <h6 style='font-size:1.2em'>More calculations:<h6>
+          {% for choice in choices %}
+            {% if choice != operation %}  
+              <a href="/{{ choices[choice] }}" style='font-size:1.3em'>{{ choice }}</a><br>
+            {% endif %}
+          {% endfor %}
+        {% endif %}
+        <hr/>
+        <a href="https://github.com/helloMusa/Statistics-Calculator" style="font-size:1.5em">Check out the source code!</a>
       </div>
     </div>
   </div>
