@@ -1,7 +1,8 @@
 # Statistics-Calculator
 # In Progress
 
-A calculator that can be used for basic statistic-based calculations. Used for personal use but will likely become a web app in the future.
+A calculator that can be used for basic statistic-based calculations.
+Being transformed into a web app with Flask.
 
 List of operations:
 - [x] Arithmetic Mean/Average
