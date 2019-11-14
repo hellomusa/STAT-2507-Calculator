@@ -1,23 +1,17 @@
-# Statistics-Calculator
-# In Progress
 
-A calculator that can be used for basic statistic-based calculations.
-Being transformed into a web app with Flask.
+  <h3 align="center">Statistics Calculator Web App</h3>
 
-List of operations:
-- [x] Arithmetic Mean/Average
-- [x] Median (and its rank)
-- [x] Mode
-- [x] Population Variance
-- [x] Sample Variance
-- [x] Population Standard Deviation
-- [x] Sample Standard Deviation
-- [x] Sample z-score
-- [x] Percentiles
-- [x] Interquartile Range
-- [x] Minimum and maximum
-- [x] Five-number summary (min, q1, median, q3, max)
-- [x] Combinations
-- [x] Permutations
-- [ ] Binomial Probability Distribution
+  <p align="center">
+    A calculator that can be used for basic statistic-based calculations. Being transformed into a web app with Flask.
+</p>
 
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
+![Product Name Screen Shot](https://i.imgur.com/jTiaxyU.png "Picture")
+
+### Built With
+
+* Python
+* Flask
+* HTML/CSS
