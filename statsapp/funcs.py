@@ -23,17 +23,6 @@ def get_mode(data):
 	return mode
 
 
-# Max
-def get_max():
-	data_max = max(data)
-	return data_max
-
-# Min
-def get_min():
-	data_min = min(data)
-	return data_min
-
-
 # Population Variance:
 def get_pop_variance(data):
 	pop_variance = statistics.pvariance(data, get_mean(data))
@@ -60,31 +49,31 @@ def get_sam_sd(data):
 
 # Sample z-score
 def get_zscore(data, x):
-	z_score = ((x - get_mean(data)) / get_sam_sd(data))
+	z_score = ((x - get_mean(data)) / get_pop_sd(data))
 	return z_score
 
 
 # Percentiles
-def get_percentile(p):
-	pth = int(((p * (size + 1)) / 100)) - 1
+def get_percentile(data, p):
+	pth = int(((p * (len(data) + 1)) / 100)) - 1
 	pos = pth % 1
 	sorted_data = sorted(data)
 	return sorted_data[int(pth)] + ((sorted_data[int(pth)+1] - sorted_data[int(pth)]))*pos
 
 # Interquartile Range
-def get_iqr():
-	q3 = get_percentile(75)
-	q1 = get_percentile(25)
+def get_iqr(data):
+	q3 = get_percentile(data, 75)
+	q1 = get_percentile(data, 25)
 	iqr = (q3 - q1)
 	return iqr
 
 # Five Number Summary
-def get_five_num_summary():
-	d_min = get_min()
-	q1 = get_percentile(25)
-	median = get_median()
-	q3 = get_percentile(75)
-	d_max = get_max()
+def get_five_num_summary(data):
+	d_min = min(data)
+	q1 = get_percentile(data, 25)
+	median = get_median(data)
+	q3 = get_percentile(data, 75)
+	d_max = max(data)
 	summary_nums = [d_min, q1, median, q3, d_max]
 	summary = "Minimum: " + str(d_min) + ", Q1: " + str(q1) + ", Median: " + str(median[1]) + ", Q3: " + str(q3) + ", Maximum: " + str(d_max)
 	return summary

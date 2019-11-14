@@ -1,0 +1,18 @@
+{% extends "index.html" %}
+{% block content %}
+	<h1>Percentile Calculator</h1>
+    <form method="POST" action="">
+        {{ form.csrf_token }}
+        {{ form.body.label }} {{ form.body(cols="35", rows="20") }}<br>
+        {{ form.arg.label }} {{ form.arg(cols="35", rows="20") }}<br>
+        <input type="submit" value="Submit Data and Argument"/>
+    </form>
+    <h3>The {{ percentile }}th {{ operation }} is: {{ result }}</h3>
+    
+    <h6>More calculations:<h6>
+	{% for choice in choices %}
+		{% if choice != operation %}	
+		<a href="/{{ choices[choice] }}">{{ choice }}</a><br>
+		{% endif %}
+	{% endfor %}
+{% endblock content %}

@@ -1,9 +1,9 @@
-{% extends "layout.html" %}
+{% extends "index.html" %}
 {% block content %}
 	<h1>Welcome to the Statistics Calculator:</h1>
 	<h3>Select a calculation below</h3>
-	<p style="border:3px; border-style:solid; border-radius: 5px; border-color:#FF0000; padding: 1em;">
-		{% for choice in choices %}	
+	<p style="border:3px; border-style:solid; border-radius: 5px; border-color:#6699cc; padding: 1em;">
+		{% for choice in choices if choice != 'Go Home' %}	
 			<a href="/{{ choices[choice] }}">{{ choice }}</a><br>
 		{% endfor %}
 	</p>
