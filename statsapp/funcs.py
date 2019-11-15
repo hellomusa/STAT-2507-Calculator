@@ -3,8 +3,10 @@ import math
 import numpy as np
 
 
+
 # Mean
 def get_mean(data):
+	map(int, data)
 	mean = sum(data) / len(data)
 	return mean
 

@@ -1,4 +1,4 @@
-from flask import render_template, url_for
+from flask import render_template, url_for, request
 from statsapp import app, db
 from statsapp.forms import DataForm, ArgForm
 from statsapp.models import Data
@@ -27,16 +27,19 @@ def home():
 
 @app.route('/about')
 def about():
-    return render_template('index.html', 
-    						title='about')
+	if request.method == 'POST':
+	    return render_template('index.html', 
+	    						title='about')
 
+def parse_form(page):
+	return [float(i) for i in request.form['body'].split(',')]
 
 @app.route('/mean', methods=['GET', 'POST'])
 def mean():
 	form = DataForm()
 
 	if form.validate_on_submit():
-		result = get_mean([float(i) for i in form.body.data.split(',')])
+		result = get_mean(parse_form('/mean'))
 		return render_template('mean.html', 
 								choices=choices,  
 								form=form, 
@@ -54,7 +57,7 @@ def median():
 	form = DataForm()
 
 	if form.validate_on_submit():
-		result = get_median([float(i) for i in form.body.data.split(',')])[1]
+		result = get_median(parse_form('/median'))[1]
 		return render_template('median.html', 
 								choices=choices, 
 								form=form, 
@@ -73,8 +76,7 @@ def mode():
 
 	if form.validate_on_submit():
 		try:
-			print([float(i) for i in form.body.data.split(',')])
-			result = get_mode([float(i) for i in form.body.data.split(',')])
+			result = get_mode(parse_form('/mode'))
 			return render_template('mode.html', 
 									choices=choices, 
 									form=form, 
@@ -99,7 +101,7 @@ def samvar():
 	form = DataForm()
 
 	if form.validate_on_submit():  
-		result = get_sam_variance([float(i) for i in form.body.data.split(',')])
+		result = get_sam_variance(parse_form('/samplevariance'))
 		return render_template('samvar.html', 
 								choices=choices, 
 								form=form, 
@@ -117,7 +119,7 @@ def popvar():
 	form = DataForm()
 
 	if form.validate_on_submit():	  
-		result = get_pop_variance([float(i) for i in form.body.data.split(',')])
+		result = get_pop_variance(parse_form('/populationvariance'))
 		return render_template('popvar.html', 
 								choices=choices, 
 								form=form, 
@@ -135,7 +137,7 @@ def samsd():
 	form = DataForm()
 
 	if form.validate_on_submit():	  
-		result = get_sam_sd([float(i) for i in form.body.data.split(',')])
+		result = get_sam_sd(parse_form('/samplesd'))
 		return render_template('samsd.html', 
 								choices=choices, 
 								form=form, 
@@ -153,7 +155,7 @@ def popsd():
 	form = DataForm()
 
 	if form.validate_on_submit():  
-		result = get_pop_sd([float(i) for i in form.body.data.split(',')])
+		result = get_pop_sd(parse_form('/populationsd'))
 		return render_template('popsd.html', 
 								choices=choices, 
 								form=form, 
@@ -171,7 +173,7 @@ def zscore():
 	form = ArgForm()
 
 	if form.validate_on_submit():
-		result = get_zscore([float(i) for i in form.body.data.split(',')], float(form.arg.data))
+		result = get_zscore(parse_form('/zscore'), float(form.arg.data))
 		return render_template('zscore.html', 
 								choices=choices, 
 								form=form, 
@@ -189,7 +191,7 @@ def percentile():
 	form = ArgForm()
 
 	if form.validate_on_submit():  
-		result = get_percentile([float(i) for i in form.body.data.split(',')], float(form.arg.data))
+		result = get_percentile(parse_form('/percentile'), float(form.arg.data))
 		percentile = int(form.arg.data)
 		return render_template('percentile.html', 
 								choices=choices, 
@@ -209,7 +211,7 @@ def percentile():
 def iqr():
 	form = DataForm()
 	if form.validate_on_submit():  
-		result = get_iqr([float(i) for i in form.body.data.split(',')])
+		result = get_iqr(parse_form('/iqr'))
 		return render_template('iqr.html', 
 								choices=choices, 
 								form=form, 
@@ -226,7 +228,7 @@ def iqr():
 def five_num_summ():
 	form = DataForm()
 	if form.validate_on_submit():
-		result = get_five_num_summary([float(i) for i in form.body.data.split(',')])
+		result = get_five_num_summary(parse_form('/fivenum'))
 		return render_template('fivenum.html', 
 								choices=choices, 
 								form=form, 
