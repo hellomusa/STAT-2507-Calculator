@@ -18,6 +18,11 @@ choices = { 'Go Home': 'home',
 			'Five Number Summary' : 'fivenum'
 }
 
+
+def parse_form(page):
+	return [float(i) for i in request.form['body'].split(',')]
+
+
 @app.route('/home')
 @app.route('/')
 def home():
@@ -31,14 +36,13 @@ def about():
 	    return render_template('index.html', 
 	    						title='about')
 
-def parse_form(page):
-	return [float(i) for i in request.form['body'].split(',')]
 
 @app.route('/mean', methods=['GET', 'POST'])
 def mean():
 	form = DataForm()
 
-	if form.validate_on_submit():
+	if request.method == 'POST':
+		print('yay?')
 		result = get_mean(parse_form('/mean'))
 		return render_template('mean.html', 
 								choices=choices,  
@@ -56,7 +60,7 @@ def mean():
 def median():
 	form = DataForm()
 
-	if form.validate_on_submit():
+	if form.is_submitted():
 		result = get_median(parse_form('/median'))[1]
 		return render_template('median.html', 
 								choices=choices, 
@@ -168,12 +172,15 @@ def popsd():
 							operation='Population Standard Deviation')
 
 
+# def parse_form(page):
+# 	return [float(i) for i in request.form['body'].split(',')]
+
 @app.route('/zscore', methods=['GET', 'POST'])
 def zscore():
 	form = ArgForm()
 
-	if form.validate_on_submit():
-		result = get_zscore(parse_form('/zscore'), float(form.arg.data))
+	if request.method == 'POST':
+		result = get_zscore(float(form.x.data), float(form.mean.data), float(form.sd.data))
 		return render_template('zscore.html', 
 								choices=choices, 
 								form=form, 
@@ -190,15 +197,15 @@ def zscore():
 def percentile():
 	form = ArgForm()
 
-	if form.validate_on_submit():  
+	if request.method == 'POST':  
 		result = get_percentile(parse_form('/percentile'), float(form.arg.data))
 		percentile = int(form.arg.data)
 		return render_template('percentile.html', 
 								choices=choices, 
 								form=form, 
 								percentile=percentile,
-								 operation='Percentile', 
-								 result=result)
+								operation='Percentile', 
+								result=result)
 
 	return render_template('percentile.html', 
 							choices=choices, 

@@ -2,8 +2,6 @@ import statistics
 import math
 import numpy as np
 
-
-
 # Mean
 def get_mean(data):
 	map(int, data)
@@ -51,17 +49,18 @@ def get_sam_sd(data):
 
 
 # Sample z-score
-def get_zscore(data, x):
-	z_score = ((x - get_mean(data)) / get_pop_sd(data))
+def get_zscore(x, mean, sd):
+	z_score = ((x - mean) / sd)
 	return z_score
 
 
 # Percentiles
 def get_percentile(data, p):
-	pth = int(((p * (len(data) + 1)) / 100)) - 1
-	pos = pth % 1
-	sorted_data = sorted(data)
-	return sorted_data[int(pth)] + ((sorted_data[int(pth)+1] - sorted_data[int(pth)]))*pos
+	# pth = int(((p * (len(data) + 1)) / 100)) - 1
+	# pos = pth % 1
+	# sorted_data = sorted(data)
+	# return sorted_data[int(pth)] + ((sorted_data[int(pth)+1] - sorted_data[int(pth)]))*pos
+	return np.percentile(data, p)
 
 # Interquartile Range
 def get_iqr(data):
@@ -78,7 +77,7 @@ def get_five_num_summary(data):
 	q3 = get_percentile(data, 75)
 	d_max = max(data)
 	summary_nums = [d_min, q1, median, q3, d_max]
-	summary = "Minimum: " + str(d_min) + ", Q1: " + str(q1) + ", Median: " + str(median[1]) + ", Q3: " + str(q3) + ", Maximum: " + str(d_max)
+	summary = str(d_min) + " " + str(q1) + " " + str(median[1]) + " " + str(q3) + " " + str(d_max)
 	return summary
 
 
