@@ -41,7 +41,7 @@ def about():
 def mean():
 	form = DataForm()
 
-	if request.method == 'POST':
+	if form.validate_on_submit():
 		print('yay?')
 		result = get_mean(parse_form('/mean'))
 		return render_template('mean.html', 
@@ -60,7 +60,7 @@ def mean():
 def median():
 	form = DataForm()
 
-	if form.is_submitted():
+	if form.validate_on_submit():
 		result = get_median(parse_form('/median'))[1]
 		return render_template('median.html', 
 								choices=choices, 
