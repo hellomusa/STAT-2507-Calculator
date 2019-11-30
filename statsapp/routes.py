@@ -1,7 +1,6 @@
 from flask import render_template, url_for, request
-from statsapp import app, db
+from statsapp import app
 from statsapp.forms import DataForm, ArgForm
-from statsapp.models import Data
 from statsapp.funcs import *
 
 choices = { 'Go Home': 'home',
