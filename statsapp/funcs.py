@@ -143,7 +143,7 @@ def get_five_num_summary(data):
 	median = get_median(data)
 	q3 = get_percentile(data, 75)
 	d_max = max(data)
-	summary = str(d_min) + " " + str(q1) + " " + str(median[1]) + " " + str(q3) + " " + str(d_max)
+	summary = str(d_min) + " " + str(q1) + " " + str(median) + " " + str(q3) + " " + str(d_max)
 	return summary
 
 
