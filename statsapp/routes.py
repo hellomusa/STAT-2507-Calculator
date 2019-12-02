@@ -42,7 +42,7 @@ def mean():
 
 	if form.validate_on_submit():
 		print('yay?')
-		result = get_mean(parse_form('/mean'))
+		result = get_mean(parse_form())
 		return render_template('mean.html', 
 								choices=choices,  
 								form=form, 
