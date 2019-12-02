@@ -19,7 +19,14 @@ choices = { 'Go Home': 'home',
 
 
 def parse_form(page):
-	return [float(i) for i in request.form['body'].split(',')]
+	'''
+	Args:
+		page (string): Name of page
+	Returns:
+		data (list): List of floats
+	'''
+	data = [float(i) for i in request.form['body'].split(',')]
+	return data
 
 
 @app.route('/home')
@@ -29,20 +36,12 @@ def home():
     						choices=choices)
 
 
-@app.route('/about')
-def about():
-	if request.method == 'POST':
-	    return render_template('index.html', 
-	    						title='about')
-
-
 @app.route('/mean', methods=['GET', 'POST'])
 def mean():
 	form = DataForm()
 
 	if form.validate_on_submit():
-		print('yay?')
-		result = get_mean(parse_form())
+		result = get_mean(parse_form('/mean'))
 		return render_template('mean.html', 
 								choices=choices,  
 								form=form, 
@@ -213,6 +212,7 @@ def percentile():
 @app.route('/iqr', methods=['GET', 'POST'])
 def iqr():
 	form = DataForm()
+
 	if form.validate_on_submit():  
 		result = get_iqr(parse_form('/iqr'))
 		return render_template('iqr.html', 
@@ -230,6 +230,7 @@ def iqr():
 @app.route('/fivenum', methods=['GET', 'POST'])
 def five_num_summ():
 	form = DataForm()
+	
 	if form.validate_on_submit():
 		result = get_five_num_summary(parse_form('/fivenum'))
 		return render_template('fivenum.html', 
