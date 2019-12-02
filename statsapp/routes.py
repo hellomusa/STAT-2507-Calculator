@@ -2,7 +2,7 @@ from flask import render_template, url_for, request
 from statsapp import app
 from statsapp.forms import DataForm, ArgForm
 from statsapp.funcs import *
-
+#test
 choices = { 'Go Home': 'home',
 			'Mean' : 'mean',
 			'Median': 'median',
