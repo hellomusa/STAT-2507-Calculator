@@ -5,7 +5,7 @@
     https://statcalc.app
 </p>
   <p align="center">
-    Calculator web application for basic Statistics.
+    <a href="https://agile-ravine-52563.herokuapp.com/>Calculator web application for basic statistics</a>
 </p>
 
 <!-- ABOUT THE PROJECT -->
