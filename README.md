@@ -1,7 +1,4 @@
-
-  <h3 align="center">Statistics Calculator Web App </h3>
-  
- ## [Calculator web application for basic statistics](https://agile-ravine-52563.herokuapp.com)
+## [Statistics Calculator Web App](https://agile-ravine-52563.herokuapp.com)
 
 <!-- ABOUT THE PROJECT -->
 ## About The Project
